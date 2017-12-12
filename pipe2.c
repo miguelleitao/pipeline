@@ -53,6 +53,7 @@ void *CalcInt2(void *in)
 
 }
 
+// Em conjunto, grupos de 10
 void *CalcAll(void *in)
 {
   int i, j;
@@ -77,6 +78,7 @@ void *CalcAll(void *in)
 
 }
 
+// Em conjunto, grupos de 1
 void *CalcAll2(void *in)
 {
   int i, j;

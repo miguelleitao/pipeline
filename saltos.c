@@ -38,15 +38,16 @@ void TestaSaltos()
     if (tabi & 0x80)    I8 = I8+1;
   }
   gettimeofday(&t1,&tz);
-  printf("  Tempo: %ld msegs\n",  TIME_DIF(t1,t0)/1000L);
-  printf("  Saltos efectuados: %ld\n",  (long)(I1+I2+I3+I4+I5+I6+I7+I8) );
+  printf("  Time: %ld msegs\n",  TIME_DIF(t1,t0)/1000L);
+  long total = I1+I2+I3+I4+I5+I6+I7+I8;
+  printf("  Branches taken: %ld (%3.2f%%)\n",  total, (double)total*100./(double)TAB_SIZE/8. );
   //printf("\tI1:%d\n\tI2:%d\n\tI3:%d\n\tI4:%d\n\tI5:%d\n\tI6:%d\n\tI7:%d\n\tI8:%d\n",
   //	 I1, I2, I3, I4, I5, I6, I7, I8);
 }
 
 void CreatePattern(int pat_len)
 {
-  printf("\nPattern with lenght %d\n",pat_len);
+  printf("\nPattern length: %d\n",pat_len);
   int i;
   for( i=0 ; i<pat_len ; i++ )
           Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
@@ -60,22 +61,22 @@ int main()
 {
   int i;
 
-  printf("\nSem saltos\n");
+  printf("\nNo branches taken\n");
   for( i=0 ; i<TAB_SIZE ; i++ )
     Tab[i] = (unsigned char)0x00;
   TestaSaltos();
 
-  printf("\nTodos os saltos\n");  
+  printf("\nAll branches taken\n");  
   for( i=0 ; i<TAB_SIZE ; i++ )
     Tab[i] = (unsigned char)0xff;
   TestaSaltos();
 
-  printf("\nAleatorio\n");
+  printf("\nRandom\n");
   for( i=0 ; i<TAB_SIZE ; i++ )
     Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
   TestaSaltos();
 
-  printf("\nPadrao com periodo 1\n"); 
+  printf("\nAlternate\n"); 
   for( i=0 ; i<TAB_SIZE ; i+=1 )
           Tab[i] = (unsigned char)0x55;
   TestaSaltos();
@@ -86,19 +87,20 @@ int main()
   CreatePattern(4);
   TestaSaltos();
 
-
   CreatePattern(16);
+  TestaSaltos();
+
+  CreatePattern(64);
   TestaSaltos();
 
   CreatePattern(256);
   TestaSaltos();
 
-  CreatePattern(2048);
+  CreatePattern(1024);
   TestaSaltos();
 
   CreatePattern(TAB_SIZE);
   TestaSaltos();
-
 
   return 0;
 }

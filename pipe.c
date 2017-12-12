@@ -9,8 +9,8 @@
 
 time_t tempo0, tempo1, tempo2, tempo3;
 
-#define RES_F 	resF = (resF*(float)i + (float)i) / (((float)i)+2); \
-		resF = (resF*(float)j + (float)j) / (((float)j)+2)
+#define RES_F 	resF = (resF*(float)i + (float)i) / (((float)i)+2.); \
+		resF = (resF*(float)j + (float)j) / (((float)j)+2.)
 
 #define RES_I 	resI = (resI*i + i + 5) / (i+1); \
 		resI = (resI*j + j + 5) / (j/3+1)
