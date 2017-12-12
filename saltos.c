@@ -1,0 +1,116 @@
+/*
+
+	saltos.c
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
+#include <unistd.h>
+
+#define TIME_DIF(t2,t1) ( (long)((t2).tv_sec-(t1).tv_sec) * 1000000L + (long)((t2).tv_usec-(t1).tv_usec) )
+
+#define TAB_SIZE 80000000
+
+unsigned char Tab[TAB_SIZE];
+
+void TestaSaltos()
+{
+  struct timeval  t0, t1 ;
+  struct timezone tz;
+  int I1, I2, I3, I4, I5, I6, I7, I8;
+  I1 = I2 = I3 = I4 = I5 = I6 = I7 = I8 = 0;
+  int i;
+  sleep(1);
+  gettimeofday(&t0,&tz);
+  for( i=0 ; i<TAB_SIZE ; i++ )
+  {
+    register unsigned char tabi = Tab[i];
+    if (tabi & 0x01)    I1 = I1+1;
+    if (tabi & 0x02)    I2 = I2+1;
+    if (tabi & 0x04)    I3 = I3+1;
+    if (tabi & 0x08)    I4 = I4+1;
+    if (tabi & 0x10)    I5 = I5+1;
+    if (tabi & 0x20)    I6 = I6+1;
+    if (tabi & 0x40)    I7 = I7+1;
+    if (tabi & 0x80)    I8 = I8+1;
+  }
+  gettimeofday(&t1,&tz);
+  printf("  Tempo: %ld msegs\n",  TIME_DIF(t1,t0)/1000L);
+  printf("  Saltos efectuados: %ld\n",  (long)(I1+I2+I3+I4+I5+I6+I7+I8) );
+  //printf("\tI1:%d\n\tI2:%d\n\tI3:%d\n\tI4:%d\n\tI5:%d\n\tI6:%d\n\tI7:%d\n\tI8:%d\n",
+  //	 I1, I2, I3, I4, I5, I6, I7, I8);
+}
+
+
+int main()
+{
+  int i;
+
+  printf("\nSem saltos\n");
+  for( i=0 ; i<TAB_SIZE ; i++ )
+    Tab[i] = (unsigned char)0x00;
+  TestaSaltos();
+
+  printf("\nTodos os saltos\n");  
+  for( i=0 ; i<TAB_SIZE ; i++ )
+    Tab[i] = (unsigned char)0xff;
+  TestaSaltos();
+
+  printf("\nAleatorio\n");
+  for( i=0 ; i<TAB_SIZE ; i++ )
+    Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
+  TestaSaltos();
+
+  printf("\nPadrao com periodo 1\n"); 
+  for( i=0 ; i<TAB_SIZE ; i+=1 )
+  {
+          Tab[i] = (unsigned char)0x55;
+  }
+  TestaSaltos();
+
+  printf("\nPadrao com periodo 2\n"); 
+  for( i=0 ; i<TAB_SIZE ; i+=2 )
+  {
+	  Tab[i] = (unsigned char)0x55;
+	  Tab[i+1] = (unsigned char)0xaa;
+  }
+  TestaSaltos();
+
+  printf("\nPadrao com periodo 3\n");
+  for( i=0 ; i<TAB_SIZE ; i+=3 )
+  {
+          Tab[i] = (unsigned char)0x55;
+          Tab[i+1] = (unsigned char)0xaa;
+          Tab[i+2] = (unsigned char)0x5a;
+  }
+  TestaSaltos();
+ 
+  printf("\nPadrao com periodo 4\n"); 
+  for( i=0 ; i<TAB_SIZE ; i+=4 )
+  {
+          Tab[i] = (unsigned char)0x55;
+          Tab[i+1] = (unsigned char)0x5a;
+	  Tab[i+2] = (unsigned char)0x5a;
+	  Tab[i+3] = (unsigned char)0xaa;
+  }
+  TestaSaltos();
+
+  printf("\nPadrao com periodo 8\n"); 
+  for( i=0 ; i<TAB_SIZE ; i+=8 )
+  {
+          Tab[i] = (unsigned char)0x55;
+          Tab[i+1] = (unsigned char)0xaa;
+          Tab[i+2] = (unsigned char)0xaa;
+          Tab[i+3] = (unsigned char)0x5a;
+	  Tab[i+4] = (unsigned char)0xa5;
+          Tab[i+5] = (unsigned char)0xaa;
+          Tab[i+6] = (unsigned char)0xaa;
+          Tab[i+7] = (unsigned char)0x55;
+  }
+  TestaSaltos();
+
+  return 0;
+}
