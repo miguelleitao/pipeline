@@ -12,7 +12,7 @@
 
 #define TIME_DIF(t2,t1) ( (long)((t2).tv_sec-(t1).tv_sec) * 1000000L + (long)((t2).tv_usec-(t1).tv_usec) )
 
-#define TAB_SIZE 80000000
+#define TAB_SIZE (80000*1024)
 
 unsigned char Tab[TAB_SIZE];
 
@@ -23,7 +23,7 @@ void TestaSaltos()
   int I1, I2, I3, I4, I5, I6, I7, I8;
   I1 = I2 = I3 = I4 = I5 = I6 = I7 = I8 = 0;
   int i;
-  sleep(1);
+  sleep(4);
   gettimeofday(&t0,&tz);
   for( i=0 ; i<TAB_SIZE ; i++ )
   {
@@ -42,6 +42,17 @@ void TestaSaltos()
   printf("  Saltos efectuados: %ld\n",  (long)(I1+I2+I3+I4+I5+I6+I7+I8) );
   //printf("\tI1:%d\n\tI2:%d\n\tI3:%d\n\tI4:%d\n\tI5:%d\n\tI6:%d\n\tI7:%d\n\tI8:%d\n",
   //	 I1, I2, I3, I4, I5, I6, I7, I8);
+}
+
+void CreatePattern(int pat_len)
+{
+  printf("\nPattern with lenght %d\n",pat_len);
+  int i;
+  for( i=0 ; i<pat_len ; i++ )
+          Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
+
+  for( i=pat_len ; i<TAB_SIZE ; i++ )
+          Tab[i] = Tab[i%pat_len];
 }
 
 
@@ -66,51 +77,28 @@ int main()
 
   printf("\nPadrao com periodo 1\n"); 
   for( i=0 ; i<TAB_SIZE ; i+=1 )
-  {
           Tab[i] = (unsigned char)0x55;
-  }
   TestaSaltos();
 
-  printf("\nPadrao com periodo 2\n"); 
-  for( i=0 ; i<TAB_SIZE ; i+=2 )
-  {
-	  Tab[i] = (unsigned char)0x55;
-	  Tab[i+1] = (unsigned char)0xaa;
-  }
+  CreatePattern(2);
   TestaSaltos();
 
-  printf("\nPadrao com periodo 3\n");
-  for( i=0 ; i<TAB_SIZE ; i+=3 )
-  {
-          Tab[i] = (unsigned char)0x55;
-          Tab[i+1] = (unsigned char)0xaa;
-          Tab[i+2] = (unsigned char)0x5a;
-  }
-  TestaSaltos();
- 
-  printf("\nPadrao com periodo 4\n"); 
-  for( i=0 ; i<TAB_SIZE ; i+=4 )
-  {
-          Tab[i] = (unsigned char)0x55;
-          Tab[i+1] = (unsigned char)0x5a;
-	  Tab[i+2] = (unsigned char)0x5a;
-	  Tab[i+3] = (unsigned char)0xaa;
-  }
+  CreatePattern(4);
   TestaSaltos();
 
-  printf("\nPadrao com periodo 8\n"); 
-  for( i=0 ; i<TAB_SIZE ; i+=8 )
-  {
-          Tab[i] = (unsigned char)0x55;
-          Tab[i+1] = (unsigned char)0xaa;
-          Tab[i+2] = (unsigned char)0xaa;
-          Tab[i+3] = (unsigned char)0x5a;
-	  Tab[i+4] = (unsigned char)0xa5;
-          Tab[i+5] = (unsigned char)0xaa;
-          Tab[i+6] = (unsigned char)0xaa;
-          Tab[i+7] = (unsigned char)0x55;
-  }
+
+  CreatePattern(16);
   TestaSaltos();
+
+  CreatePattern(256);
+  TestaSaltos();
+
+  CreatePattern(2048);
+  TestaSaltos();
+
+  CreatePattern(TAB_SIZE);
+  TestaSaltos();
+
 
   return 0;
 }
