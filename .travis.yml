@@ -2,7 +2,7 @@
 language: c
 sudo: false # only for faster builds
 script:
-  - clang -coverage -O0 pipe.c -o pipe
+  - gcc -Wall -coverage -O0 pipe.c -D MAX_I=8 -o pipe
   - ./pipe
   - gcov pipe.c
 

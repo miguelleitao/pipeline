@@ -16,7 +16,9 @@ time_t tempo0, tempo1, tempo2, tempo3;
 		resI = (resI*j + j + 5) / (j/3+1)
 
 #define MAX_J 2000
+#ifndef MAX_I
 #define MAX_I 30000
+#endif
 
 void *CalcInt(void *in)
 {
@@ -33,6 +35,7 @@ void *CalcInt(void *in)
   }
   time(&tempo1);
   printf("resI = %d\n", resI);
+  return NULL;
 }
 
 void *CalcFloat(void *in)
@@ -49,7 +52,7 @@ void *CalcFloat(void *in)
     RES_F;  RES_F;
   }
   printf("resF = %f\n", resF);
-
+  return NULL;
 }
 
 void *CalcAll(void *in)
@@ -73,7 +76,7 @@ void *CalcAll(void *in)
     RES_I; RES_I;
   }
   printf("resI = %d, resF=%f\n", resI, resF);
-
+  return NULL;
 }
 
 void *CalcAll2(void *in)
@@ -97,9 +100,10 @@ void *CalcAll2(void *in)
     RES_I; RES_F;
   }
   printf("resI = %d, resF=%f\n", resI, resF);
+  return NULL;
 }
 
-main()
+int main()
 {
   printf("\n# Em separado\n");
   time(&tempo0);
