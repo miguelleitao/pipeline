@@ -1,7 +1,7 @@
 
 /*
-	pipe.c
-*/
+ *	pipe.c
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
