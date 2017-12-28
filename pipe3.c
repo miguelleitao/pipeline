@@ -134,7 +134,7 @@ void *CalcAll2(void *in)
   return NULL;
 }
 
-main()
+int main()
 {
   printf("\n# Em separado\n");
   time(&tempo0);
