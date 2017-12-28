@@ -124,5 +124,5 @@ int main()
   CalcAll2(NULL);
   time(&tempo3);
   printf("Tempo: %ld segs\n", tempo3-tempo0);
-
+  return 0;
 }
