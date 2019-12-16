@@ -116,7 +116,7 @@ int main()
   time(&tempo1);
   CalcInt2(NULL);
   time(&tempo2);
-  printf("CalcInt: %ld segs,  CalcFloat: %ld segs, Tempo_Total: %ld segs\n", tempo1-tempo0, tempo2-tempo1, tempo2-tempo0);
+  printf("CalcInt1: %ld segs,  CalcInt2: %ld segs, Tempo_Total: %ld segs\n", tempo1-tempo0, tempo2-tempo1, tempo2-tempo0);
 
   printf("\n# Em conjunto, grupos de 10\n");
   time(&tempo0);
