@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//#include <pthread.h>
 
 time_t tempo0, tempo1, tempo2, tempo3;
 
@@ -63,7 +62,7 @@ void *CalcAll(void *in)
 {
   int i, j;
   float resF = 1.;
-float resF2 = 1.;
+  float resF2 = 1.;
   int resI = 1;
   for( j=0 ; j<MAX_J ; j++ )
   for( i=0 ; i<MAX_I ; i++ )
@@ -88,7 +87,7 @@ void *CalcAll2(void *in)
 {
   int i, j;
   float resF = 1.;
-float resF2 = 1.;
+  float resF2 = 1.;
   int resI = 1;
   for( j=0 ; j<MAX_J ; j++ )
   for( i=0 ; i<MAX_I ; i++ )
@@ -111,8 +110,6 @@ float resF2 = 1.;
 
 main()
 {
-  pthread_t pt1, pt2;
-
   printf("\n# Em separado\n");
   time(&tempo0);
   CalcInt(NULL);
