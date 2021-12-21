@@ -1,0 +1,16 @@
+
+language: c
+sudo: false # only for faster builds
+script:
+  - gcc -Wall -coverage -O0 pipe.c -D MAX_I=8 -o pipe
+  - ./pipe
+  - gcov pipe.c
+  - gcc -Wall -coverage -O0 pipe2.c -D MAX_I=8 -o pipe2
+  - ./pipe2
+  - gcov pipe2.c
+  - gcc -Wall -coverage -O0 pipe3.c -D MAX_I=8 -o pipe3
+  - ./pipe3
+  - gcov pipe3.c
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

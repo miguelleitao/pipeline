@@ -21,7 +21,9 @@ time_t tempo0, tempo1, tempo2, tempo3;
 
 
 #define MAX_J 2000
+#ifndef MAX_I
 #define MAX_I 30000
+#endif
 
 void *CalcInt1(void *in)
 {
@@ -37,6 +39,7 @@ void *CalcInt1(void *in)
       RES_I1; RES_I1;
   }
   printf("resI1 = %d\n", resI1);
+  return NULL;
 }
 
 void *CalcInt2(void *in)
@@ -53,6 +56,7 @@ void *CalcInt2(void *in)
     RES_I2;  RES_I2;
   }
   printf("resI2 = %d\n", resI2);
+  return NULL;
 }
 
 void *CalcInt3(void *in)
@@ -69,6 +73,7 @@ void *CalcInt3(void *in)
     RES_I3;  RES_I3;
   }
   printf("resI3 = %d\n", resI3);
+  return NULL;
 }
 
 void *CalcAll(void *in)
@@ -100,6 +105,7 @@ void *CalcAll(void *in)
 
   }
   printf("resI1= %d, resI2=%d, resI3=%d\n", resI1, resI2, resI3);
+  return NULL;
 
 }
 
@@ -125,9 +131,10 @@ void *CalcAll2(void *in)
     RES_I1; RES_I2; RES_I3;
   }
   printf("resI1= %d, resI2=%d, resI3=%d\n", resI1, resI2, resI3);
+  return NULL;
 }
 
-main()
+int main()
 {
   printf("\n# Em separado\n");
   time(&tempo0);
@@ -151,5 +158,5 @@ main()
   CalcAll2(NULL);
   time(&tempo3);
   printf("Tempo: %ld segs\n", tempo3-tempo0);
-
+  return 0;
 }
