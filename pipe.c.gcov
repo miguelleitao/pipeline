@@ -1,0 +1,133 @@
+        -:    0:Source:pipe.c
+        -:    0:Graph:pipe.gcno
+        -:    0:Data:pipe.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:
+        -:    2:/*
+        -:    3:	pipe.c
+        -:    4:*/
+        -:    5:
+        -:    6:#include <stdio.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <time.h>
+        -:    9:
+        -:   10:time_t tempo0, tempo1, tempo2, tempo3;
+        -:   11:
+        -:   12:#define RES_F 	resF = (resF*(float)i + (float)i) / (((float)i)+2.); \
+        -:   13:		resF = (resF*(float)j + (float)j) / (((float)j)+2.)
+        -:   14:
+        -:   15:#define RES_I 	resI = (resI*i + i + 5) / (i+1); \
+        -:   16:		resI = (resI*j + j + 5) / (j/3+1)
+        -:   17:
+        -:   18:#define MAX_J 2000
+        -:   19:#ifndef MAX_I
+        -:   20:#define MAX_I 30000
+        -:   21:#endif
+        -:   22:
+        2:   23:void *CalcInt(void *in)
+        -:   24:{
+        -:   25:  int i, j;
+        2:   26:  int resI = 1;
+     4002:   27:  for( j=0 ; j<MAX_J ; j++ )
+    36000:   28:  for( i=0 ; i<MAX_I ; i++ )
+        -:   29:  {
+    32000:   30:      RES_I; RES_I;
+    32000:   31:      RES_I; RES_I;
+    32000:   32:      RES_I; RES_I;
+    32000:   33:      RES_I; RES_I;
+    32000:   34:      RES_I; RES_I;
+        -:   35:  }
+        2:   36:  time(&tempo1);
+        2:   37:  printf("resI = %d\n", resI);
+        2:   38:  return NULL;
+        -:   39:}
+        -:   40:
+        2:   41:void *CalcFloat(void *in)
+        -:   42:{
+        -:   43:  int i, j;
+        2:   44:  float resF = 1.;
+     4002:   45:  for( j=0 ; j<MAX_J ; j++ )
+    36000:   46:  for( i=0 ; i<MAX_I ; i++ )
+        -:   47:  {
+    32000:   48:    RES_F;  RES_F;
+    32000:   49:    RES_F;  RES_F;
+    32000:   50:    RES_F;  RES_F;
+    32000:   51:    RES_F;  RES_F;
+    32000:   52:    RES_F;  RES_F;
+        -:   53:  }
+        2:   54:  printf("resF = %f\n", resF);
+        2:   55:  return NULL;
+        -:   56:}
+        -:   57:
+        2:   58:void *CalcAll(void *in)
+        -:   59:{
+        -:   60:  int i, j;
+        2:   61:  float resF = 1.;
+        2:   62:  int resI = 1;
+     4002:   63:  for( j=0 ; j<MAX_J ; j++ )
+    36000:   64:  for( i=0 ; i<MAX_I ; i++ )
+        -:   65:  {
+    32000:   66:    RES_F;  RES_F;
+    32000:   67:    RES_F;  RES_F;
+    32000:   68:    RES_F;  RES_F;
+    32000:   69:    RES_F;  RES_F;
+    32000:   70:    RES_F;  RES_F;
+        -:   71:
+    32000:   72:    RES_I; RES_I;
+    32000:   73:    RES_I; RES_I;
+    32000:   74:    RES_I; RES_I;
+    32000:   75:    RES_I; RES_I;
+    32000:   76:    RES_I; RES_I;
+        -:   77:  }
+        2:   78:  printf("resI = %d, resF=%f\n", resI, resF);
+        2:   79:  return NULL;
+        -:   80:}
+        -:   81:
+        2:   82:void *CalcAll2(void *in)
+        -:   83:{
+        -:   84:  int i, j;
+        2:   85:  float resF = 1.;
+        2:   86:  int resI = 1;
+     4002:   87:  for( j=0 ; j<MAX_J ; j++ )
+    36000:   88:  for( i=0 ; i<MAX_I ; i++ )
+        -:   89:  {
+    32000:   90:    RES_I; RES_F;
+    32000:   91:    RES_I; RES_F;
+    32000:   92:    RES_I; RES_F;
+    32000:   93:    RES_I; RES_F;
+    32000:   94:    RES_I; RES_F;
+        -:   95:
+    32000:   96:    RES_I; RES_F;
+    32000:   97:    RES_I; RES_F;
+    32000:   98:    RES_I; RES_F;
+    32000:   99:    RES_I; RES_F;
+    32000:  100:    RES_I; RES_F;
+        -:  101:  }
+        2:  102:  printf("resI = %d, resF=%f\n", resI, resF);
+        2:  103:  return NULL;
+        -:  104:}
+        -:  105:
+        2:  106:int main()
+        -:  107:{
+        2:  108:  printf("\n# Em separado\n");
+        2:  109:  time(&tempo0);
+        2:  110:  CalcInt(NULL);
+        2:  111:  time(&tempo1);
+        2:  112:  CalcFloat(NULL);
+        2:  113:  time(&tempo2);
+        2:  114:  printf("CalcInt: %ld segs,  CalcFloat: %ld segs, Tempo_Total: %ld segs\n", tempo1-tempo0, tempo2-tempo1, tempo2-tempo0);
+        -:  115:
+        2:  116:  printf("\n# Em conjunto, grupos de 10\n");
+        2:  117:  time(&tempo0);
+        2:  118:  CalcAll(NULL);
+        2:  119:  time(&tempo3);
+        2:  120:  printf("Tempo: %ld segs\n", tempo3-tempo0);
+        -:  121:
+        2:  122:  printf("\n# Em conjunto, grupos de 1\n");
+        2:  123:  time(&tempo0);
+        2:  124:  CalcAll2(NULL);
+        2:  125:  time(&tempo3);
+        2:  126:  printf("Tempo: %ld segs\n", tempo3-tempo0);
+        -:  127:
+        -:  128:}

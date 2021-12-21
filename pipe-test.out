@@ -1,0 +1,13 @@
+
+# Em separado
+resI = 1464029
+resF = 7.879980
+CalcInt: 0 segs,  CalcFloat: 0 segs, Tempo_Total: 0 segs
+
+# Em conjunto, grupos de 10
+resI = 1464029, resF=7.879980
+Tempo: 0 segs
+
+# Em conjunto, grupos de 1
+resI = 1464029, resF=7.879980
+Tempo: 0 segs
