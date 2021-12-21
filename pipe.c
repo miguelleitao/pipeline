@@ -1,24 +1,26 @@
 
 /*
- *	pipe.c
- */
+	pipe.c
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+//#include <pthread.h>
 
 time_t tempo0, tempo1, tempo2, tempo3;
 
 #define RES_F 	resF = (resF*(float)i + (float)i) / (((float)i)+2.); \
 		resF = (resF*(float)j + (float)j) / (((float)j)+2.)
 
-#define RES_I 	resI = (resI*i + i + 5) / (i+1); \
-		resI = (resI*j + j + 5) / (j/3+1)
+#define RES_I 	resI = (resI*(2*i+j) + i*17 + 5*(i%(j+43)) ) / (i+1); \
+		resI = (resI*j + (j+i+5)*13) / (j/3+1); \
+		resI = (resI*(3*i+j) + i*19 + 5*(i%(j+47)) ) / (i+1); \
+                resI = (resI*j + (j+i+3)*11) / (j/5+1); \
+
 
 #define MAX_J 2000
-#ifndef MAX_I
 #define MAX_I 30000
-#endif
 
 void *CalcInt(void *in)
 {
@@ -51,6 +53,7 @@ void *CalcFloat(void *in)
     RES_F;  RES_F;
     RES_F;  RES_F;
   }
+  time(&tempo2);
   printf("resF = %f\n", resF);
   return NULL;
 }
@@ -75,7 +78,7 @@ void *CalcAll(void *in)
     RES_I; RES_I;
     RES_I; RES_I;
   }
-  printf("resI = %d, resF=%f\n", resI, resF);
+  time(&tempo2);  printf("resI = %d, resF=%f\n", resI, resF);
   return NULL;
 }
 
@@ -99,7 +102,8 @@ void *CalcAll2(void *in)
     RES_I; RES_F;
     RES_I; RES_F;
   }
-  printf("resI = %d, resF=%f\n", resI, resF);
+  time(&tempo2);
+  printf("res2 = %d, %f\n", resI, resF);
   return NULL;
 }
 
@@ -124,5 +128,5 @@ int main()
   CalcAll2(NULL);
   time(&tempo3);
   printf("Tempo: %ld segs\n", tempo3-tempo0);
-  return 0;
+
 }
