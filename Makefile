@@ -22,3 +22,8 @@ test: pipe-test
 
 clean:
 	rm -f saltos pipe pipe-test pipe.gc* *.o
+
+push:
+	git add .
+	git commit -m "update"
+	git push

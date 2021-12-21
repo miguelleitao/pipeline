@@ -37,6 +37,7 @@ void *CalcInt(void *in)
   }
   time(&tempo1);
   printf("resI = %d\n", resI);
+  return NULL;
 }
 
 void *CalcFloat(void *in)
@@ -54,6 +55,7 @@ void *CalcFloat(void *in)
   }
   time(&tempo2);
   printf("resF = %f\n", resF);
+  return NULL;
 }
 
 void *CalcAll(void *in)
@@ -77,6 +79,7 @@ void *CalcAll(void *in)
     RES_I; RES_I;
   }
   time(&tempo2);  printf("resI = %d, resF=%f\n", resI, resF);
+  return NULL;
 }
 
 void *CalcAll2(void *in)
@@ -101,12 +104,11 @@ void *CalcAll2(void *in)
   }
   time(&tempo2);
   printf("res2 = %d, %f\n", resI, resF);
+  return NULL;
 }
 
-main()
+int main()
 {
-  pthread_t pt1, pt2;
-
   printf("\n# Em separado\n");
   time(&tempo0);
   CalcInt(NULL);
