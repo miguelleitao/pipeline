@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//#include <pthread.h>
 
 time_t tempo0, tempo1, tempo2, tempo3;
 
