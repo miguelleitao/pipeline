@@ -5,4 +5,5 @@ pipe3
 *.out
 saltos
 *~
-
+*.gcda
+*.gcno
