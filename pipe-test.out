@@ -2,12 +2,12 @@
 # Em separado
 resI = 20175
 resF = 1873.686157
-CalcInt: 10 segs,  CalcFloat: 10 segs, Tempo_Total: 20 segs
+CalcInt: 25 segs,  CalcFloat: 25 segs, Tempo_Total: 50 segs
 
 # Em conjunto, grupos de 10
 resI = 20175, resF=1873.686157
-Tempo: 16 segs
+Tempo: 42 segs
 
 # Em conjunto, grupos de 1
 res2 = 20175, 1873.686157
-Tempo: 10 segs
+Tempo: 26 segs

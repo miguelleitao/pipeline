@@ -27,7 +27,7 @@ test: pipe-test
 	gcov pipe.c
 
 clean:
-	rm -f ${PROGS} ${TEST_PROGS} pipe.gc* *.o
+	rm -f ${PROGS} ${TEST_PROGS} *.gcno *.gcda *.gcov *.o
 
 push:
 	git add .
