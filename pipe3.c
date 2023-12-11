@@ -1,6 +1,6 @@
 
 /*
-	pipe2.c
+	pipe3.c
 */
 
 #include <stdio.h>

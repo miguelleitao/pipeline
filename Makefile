@@ -1,5 +1,11 @@
 
-all: saltos pipe pipe2 pipe3
+PROGS=saltos pipe pipe2 pipe3
+
+TEST_PROGS=pipe-test pipe2-test pipe3-test test
+
+default: ${PROGS}
+
+all: default ${TEST_PROGS}
 
 saltos: saltos.c
 	cc -Wall -o $@ $<
@@ -21,7 +27,7 @@ test: pipe-test
 	gcov pipe.c
 
 clean:
-	rm -f saltos pipe pipe-test pipe.gc* *.o
+	rm -f ${PROGS} ${TEST_PROGS} pipe.gc* *.o
 
 push:
 	git add .
