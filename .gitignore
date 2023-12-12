@@ -8,3 +8,4 @@ saltos
 *.gcda
 *.gcno
 *.gcov
+*-test
