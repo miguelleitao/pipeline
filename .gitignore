@@ -7,3 +7,4 @@ saltos
 *~
 *.gcda
 *.gcno
+*.gcov
