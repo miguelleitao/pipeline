@@ -30,7 +30,7 @@ pipe3-test: pipe3.c
 test: pipe-test pipe2-test pipe3-test
 
 clean:
-	rm -f ${PROGS} ${TEST_PROGS} *.gcno *.gcda *.gcov *.o
+	rm -f ${PROGS} ${TEST_PROGS} *.gcno *.gcda *.gcov *.o *.out
 
 push:
 	git add .
