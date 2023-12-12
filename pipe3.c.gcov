@@ -1,0 +1,166 @@
+        -:    0:Source:pipe3.c
+        -:    0:Graph:pipe3.gcno
+        -:    0:Data:pipe3.gcda
+        -:    0:Runs:1
+        -:    1:
+        -:    2:/*
+        -:    3:	pipe3.c
+        -:    4:*/
+        -:    5:
+        -:    6:#include <stdio.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <time.h>
+        -:    9:
+        -:   10:time_t tempo0, tempo1, tempo2, tempo3;
+        -:   11:
+        -:   12:
+        -:   13:#define RES_I1	resI1 = (resI1*i + i + 5) / (i+1); \
+        -:   14:		resI1 = (resI1*j + j + 5) / (j/3+1)
+        -:   15:
+        -:   16:#define RES_I2  resI2 = (resI2*i + i + 5) / (i+1); \
+        -:   17:                resI2 = (resI2*j + j + 5) / (j/3+1)
+        -:   18:
+        -:   19:#define RES_I3  resI3 = (resI3*i + i + 5) / (i+1); \
+        -:   20:                resI3 = (resI3*j + j + 5) / (j/3+1)
+        -:   21:
+        -:   22:
+        -:   23:#define MAX_J 2000
+        -:   24:#ifndef MAX_I
+        -:   25:#define MAX_I 30000
+        -:   26:#endif
+        -:   27:
+        1:   28:void *CalcInt1(void *in)
+        -:   29:{
+        -:   30:  int i, j;
+        1:   31:  int resI1 = 1;
+     2001:   32:  for( j=0 ; j<MAX_J ; j++ )
+    18000:   33:  for( i=0 ; i<MAX_I ; i++ )
+        -:   34:  {
+    16000:   35:      RES_I1; RES_I1;
+    16000:   36:      RES_I1; RES_I1;
+    16000:   37:      RES_I1; RES_I1;
+    16000:   38:      RES_I1; RES_I1;
+    16000:   39:      RES_I1; RES_I1;
+        -:   40:  }
+        1:   41:  printf("resI1 = %d\n", resI1);
+        1:   42:  return NULL;
+        -:   43:}
+        -:   44:
+        1:   45:void *CalcInt2(void *in)
+        -:   46:{
+        -:   47:  int i, j;
+        1:   48:  int resI2 = 1;
+     2001:   49:  for( j=0 ; j<MAX_J ; j++ )
+    18000:   50:  for( i=0 ; i<MAX_I ; i++ )
+        -:   51:  {
+    16000:   52:    RES_I2;  RES_I2;
+    16000:   53:    RES_I2;  RES_I2;
+    16000:   54:    RES_I2;  RES_I2;
+    16000:   55:    RES_I2;  RES_I2;
+    16000:   56:    RES_I2;  RES_I2;
+        -:   57:  }
+        1:   58:  printf("resI2 = %d\n", resI2);
+        1:   59:  return NULL;
+        -:   60:}
+        -:   61:
+        1:   62:void *CalcInt3(void *in)
+        -:   63:{
+        -:   64:  int i, j;
+        1:   65:  int resI3 = 1;
+     2001:   66:  for( j=0 ; j<MAX_J ; j++ )
+    18000:   67:  for( i=0 ; i<MAX_I ; i++ )
+        -:   68:  {
+    16000:   69:    RES_I3;  RES_I3;
+    16000:   70:    RES_I3;  RES_I3;
+    16000:   71:    RES_I3;  RES_I3;
+    16000:   72:    RES_I3;  RES_I3;
+    16000:   73:    RES_I3;  RES_I3;
+        -:   74:  }
+        1:   75:  printf("resI3 = %d\n", resI3);
+        1:   76:  return NULL;
+        -:   77:}
+        -:   78:
+        1:   79:void *CalcAll(void *in)
+        -:   80:{
+        -:   81:  int i, j;
+        1:   82:  int resI1 = 1;
+        1:   83:  int resI2 = 1;
+        1:   84:  int resI3 = 1;
+     2001:   85:  for( j=0 ; j<MAX_J ; j++ )
+    18000:   86:  for( i=0 ; i<MAX_I ; i++ )
+        -:   87:  {
+    16000:   88:    RES_I2;  RES_I2;
+    16000:   89:    RES_I2;  RES_I2;
+    16000:   90:    RES_I2;  RES_I2;
+    16000:   91:    RES_I2;  RES_I2;
+    16000:   92:    RES_I2;  RES_I2;
+        -:   93:
+    16000:   94:    RES_I1; RES_I1;
+    16000:   95:    RES_I1; RES_I1;
+    16000:   96:    RES_I1; RES_I1;
+    16000:   97:    RES_I1; RES_I1;
+    16000:   98:    RES_I1; RES_I1;
+        -:   99:
+    16000:  100:    RES_I3; RES_I3;
+    16000:  101:    RES_I3; RES_I3;
+    16000:  102:    RES_I3; RES_I3;
+    16000:  103:    RES_I3; RES_I3;
+    16000:  104:    RES_I3; RES_I3;
+        -:  105:
+        -:  106:  }
+        1:  107:  printf("resI1= %d, resI2=%d, resI3=%d\n", resI1, resI2, resI3);
+        1:  108:  return NULL;
+        -:  109:
+        -:  110:}
+        -:  111:
+        1:  112:void *CalcAll2(void *in)
+        -:  113:{
+        -:  114:  int i, j;
+        1:  115:  int resI1 = 1;
+        1:  116:  int resI2 = 1;
+        1:  117:  int resI3 = 1;
+     2001:  118:  for( j=0 ; j<MAX_J ; j++ )
+    18000:  119:  for( i=0 ; i<MAX_I ; i++ )
+        -:  120:  {
+    16000:  121:    RES_I1; RES_I2; RES_I3;
+    16000:  122:    RES_I1; RES_I2; RES_I3;
+    16000:  123:    RES_I1; RES_I2; RES_I3;
+    16000:  124:    RES_I1; RES_I2; RES_I3;
+    16000:  125:    RES_I1; RES_I2; RES_I3;
+        -:  126:
+    16000:  127:    RES_I1; RES_I2; RES_I3;
+    16000:  128:    RES_I1; RES_I2; RES_I3;
+    16000:  129:    RES_I1; RES_I2; RES_I3;
+    16000:  130:    RES_I1; RES_I2; RES_I3;
+    16000:  131:    RES_I1; RES_I2; RES_I3;
+        -:  132:  }
+        1:  133:  printf("resI1= %d, resI2=%d, resI3=%d\n", resI1, resI2, resI3);
+        1:  134:  return NULL;
+        -:  135:}
+        -:  136:
+        1:  137:int main()
+        -:  138:{
+        1:  139:  printf("\n# Em separado\n");
+        1:  140:  time(&tempo0);
+        1:  141:  CalcInt1(NULL);
+        1:  142:  time(&tempo1);
+        1:  143:  CalcInt2(NULL);
+        1:  144:  time(&tempo2);
+        1:  145:  CalcInt3(NULL);
+        1:  146:  time(&tempo3);
+        1:  147:  printf("CalcInt1: %ld segs,  CalcInt2: %ld segs, CalcInt3: %ld segs, Tempo_Total: %ld segs\n", 
+        -:  148:	tempo1-tempo0, tempo2-tempo1, tempo3-tempo2, tempo3-tempo0);
+        -:  149:
+        1:  150:  printf("\n# Em conjunto, grupos de 10\n");
+        1:  151:  time(&tempo0);
+        1:  152:  CalcAll(NULL);
+        1:  153:  time(&tempo3);
+        1:  154:  printf("Tempo: %ld segs\n", tempo3-tempo0);
+        -:  155:
+        1:  156:  printf("\n# Em conjunto, grupos de 1\n");
+        1:  157:  time(&tempo0);
+        1:  158:  CalcAll2(NULL);
+        1:  159:  time(&tempo3);
+        1:  160:  printf("Tempo: %ld segs\n", tempo3-tempo0);
+        1:  161:  return 0;
+        -:  162:}

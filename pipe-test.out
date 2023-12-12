@@ -1,13 +1,13 @@
 
 # Em separado
-resI = 20175
-resF = 1873.686157
-CalcInt: 25 segs,  CalcFloat: 25 segs, Tempo_Total: 50 segs
+resI = 2766703
+resF = 7.879980
+CalcInt: 0 segs,  CalcFloat: 0 segs, Tempo_Total: 0 segs
 
 # Em conjunto, grupos de 10
-resI = 20175, resF=1873.686157
-Tempo: 42 segs
+resI = 2766703, resF=7.879980
+Tempo: 0 segs
 
 # Em conjunto, grupos de 1
-res2 = 20175, 1873.686157
-Tempo: 26 segs
+res2 = 2766703, 7.879980
+Tempo: 0 segs

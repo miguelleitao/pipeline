@@ -19,7 +19,9 @@ time_t tempo0, tempo1, tempo2, tempo3;
 
 
 #define MAX_J 2000
+#ifndef MAX_I
 #define MAX_I 30000
+#endif
 
 void *CalcInt(void *in)
 {
