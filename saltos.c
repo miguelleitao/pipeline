@@ -71,14 +71,14 @@ int main()
     Tab[i] = (unsigned char)0xff;
   TestaSaltos();
 
+  printf("\nAlternate\n");
+  for( i=0 ; i<TAB_SIZE ; i+=1 )
+          Tab[i] = (unsigned char)0x55;
+  TestaSaltos();
+
   printf("\nRandom\n");
   for( i=0 ; i<TAB_SIZE ; i++ )
     Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
-  TestaSaltos();
-
-  printf("\nAlternate\n"); 
-  for( i=0 ; i<TAB_SIZE ; i+=1 )
-          Tab[i] = (unsigned char)0x55;
   TestaSaltos();
 
   CreatePattern(2);
