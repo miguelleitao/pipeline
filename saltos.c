@@ -57,50 +57,75 @@ void CreatePattern(int pat_len)
 }
 
 
-int main()
+int main(int argc, char **argv)
 {
+  int option = -1;
+  if ( argc>1 ) option = atoi(argv[1]); //**argv-'0';
+
   int i;
 
-  printf("\nNo branches taken\n");
-  for( i=0 ; i<TAB_SIZE ; i++ )
-    Tab[i] = (unsigned char)0x00;
-  TestaSaltos();
+  if ( option<0 || option==0 ) {
+    printf("\nNo branches taken\n");
+    for( i=0 ; i<TAB_SIZE ; i++ )
+      Tab[i] = (unsigned char)0x00;
+    TestaSaltos();
+  }
 
-  printf("\nAll branches taken\n");  
-  for( i=0 ; i<TAB_SIZE ; i++ )
-    Tab[i] = (unsigned char)0xff;
-  TestaSaltos();
+  if ( option<0 || option==1 ) {
+    printf("\nAll branches taken\n");  
+    for( i=0 ; i<TAB_SIZE ; i++ )
+      Tab[i] = (unsigned char)0xff;
+    TestaSaltos();
+  }
 
-  printf("\nAlternate\n");
-  for( i=0 ; i<TAB_SIZE ; i+=1 )
-          Tab[i] = (unsigned char)0x55;
-  TestaSaltos();
+  if ( option<0 || option==2 ) {
+    printf("\nAlternate\n");
+    for( i=0 ; i<TAB_SIZE ; i+=1 )
+      Tab[i] = (unsigned char)0x55;
+    TestaSaltos();
+  }
 
-  printf("\nRandom\n");
-  for( i=0 ; i<TAB_SIZE ; i++ )
-    Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
-  TestaSaltos();
+  if ( option<0 || option==3 ) {
+    printf("\nRandom\n");
+    for( i=0 ; i<TAB_SIZE ; i++ )
+      Tab[i] = (unsigned char)((float)rand()/(float)(RAND_MAX)*256.);
+    TestaSaltos();
+  }
 
-  CreatePattern(2);
-  TestaSaltos();
+  if ( option<0 || option==4 ) {
+    CreatePattern(2);
+    TestaSaltos();
+  }
 
-  CreatePattern(4);
-  TestaSaltos();
+  if ( option<0 || option==5 ) {
+    CreatePattern(4);
+    TestaSaltos();
+  }
 
-  CreatePattern(16);
-  TestaSaltos();
+  if ( option<0 || option==6 ) {
+    CreatePattern(16);
+    TestaSaltos();
+  }
 
-  CreatePattern(64);
-  TestaSaltos();
+  if ( option<0 || option==7 ) {
+    CreatePattern(64);
+    TestaSaltos();
+  }
 
-  CreatePattern(256);
-  TestaSaltos();
+  if ( option<0 || option==8 ) {
+    CreatePattern(256);
+    TestaSaltos();
+  }
 
-  CreatePattern(1024);
-  TestaSaltos();
+  if ( option<0 || option==9 ) {
+    CreatePattern(1024);
+    TestaSaltos();
+  }
 
-  CreatePattern(TAB_SIZE);
-  TestaSaltos();
+  if ( option<0 || option==10 ) {
+    CreatePattern(TAB_SIZE);
+    TestaSaltos();
+  }
 
   return 0;
 }
