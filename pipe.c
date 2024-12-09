@@ -108,26 +108,37 @@ void *CalcAll2(void *in)
   return NULL;
 }
 
-int main()
+int main(int argc, char **argv)
 {
-  printf("\n# Em separado\n");
-  time(&tempo0);
-  CalcInt(NULL);
-  time(&tempo1);
-  CalcFloat(NULL);
-  time(&tempo2);
-  printf("CalcInt: %ld segs,  CalcFloat: %ld segs, Tempo_Total: %ld segs\n", tempo1-tempo0, tempo2-tempo1, tempo2-tempo0);
+  int option = 0;
+  if ( argc>1 )
+    option = abs(atoi(argv[1]));
 
-  printf("\n# Em conjunto, grupos de 10\n");
-  time(&tempo0);
-  CalcAll(NULL);
-  time(&tempo3);
-  printf("Tempo: %ld segs\n", tempo3-tempo0);
+  if ( ! option || option==1 ) {
+    printf("\n# Em separado\n");
+    time(&tempo0);
+    CalcInt(NULL);
+    time(&tempo1);
+    CalcFloat(NULL);
+    time(&tempo2);
+    printf("CalcInt: %ld segs,  CalcFloat: %ld segs, Tempo_Total: %ld segs\n", tempo1-tempo0, tempo2-tempo1, tempo2-tempo0);
+  }
 
-  printf("\n# Em conjunto, grupos de 1\n");
-  time(&tempo0);
-  CalcAll2(NULL);
-  time(&tempo3);
-  printf("Tempo: %ld segs\n", tempo3-tempo0);
+  if ( ! option || option==2 ) {
+    printf("\n# Em conjunto, grupos de 10\n");
+    time(&tempo0);
+    CalcAll(NULL);
+    time(&tempo3);
+    printf("Tempo: %ld segs\n", tempo3-tempo0);
+  }
+
+  if ( ! option || option==3 ) {
+    printf("\n# Em conjunto, grupos de 1\n");
+    time(&tempo0);
+    CalcAll2(NULL);
+    time(&tempo3);
+    printf("Tempo: %ld segs\n", tempo3-tempo0);
+  }
+
 
 }
